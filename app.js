@@ -679,18 +679,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function createDictCard(item) {
-        const topTrans = Object.entries(item.translations)
-            .filter(([c]) => c !== "en").slice(0, 4)
-            .map(([c, v]) => `<span class="dict-translation-chip">${LANGUAGES[c]?.flag || ""} ${v}</span>`)
+        const translations = Object.entries(item.translations)
+            .filter(([c]) => c !== "en")
+            .map(([c, v]) => `
+                <div class="dict-translation-chip" title="${LANGUAGES[c]?.name || c}">
+                    <span class="chip-flag">${LANGUAGES[c]?.flag || ""}</span>
+                    <span class="chip-val">${v}</span>
+                </div>
+            `)
             .join("");
+        
         return `
-            <div class="dict-card">
+            <div class="dict-card animate-on-enter">
                 <div class="dict-card-header">
                     <span class="dict-term">${item.term}</span>
                     <span class="dict-category ${item.category}">${item.category}</span>
                 </div>
                 <p class="dict-definition">${item.definition}</p>
-                <div class="dict-translations">${topTrans}</div>
+                <div class="dict-translations-label">IndicTrans2 Translations:</div>
+                <div class="dict-translations-grid">${translations}</div>
             </div>`;
     }
 
