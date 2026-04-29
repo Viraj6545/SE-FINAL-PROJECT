@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTranslate — IndicTrans2 Powered Agriculture Translator</title>
+    <meta name="description"
+        content="AgriTranslate: AI-powered agriculture translator using IndicTrans2. Translate farming terminology across 22+ Indian languages with domain-specific accuracy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- ===== PARTICLE CANVAS ===== -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- ===== CURSOR GLOW ===== -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" id="nav-logo" data-page="home">
+                <span class="logo-icon">🌾</span>
+                <span class="logo-text">Agri<span class="logo-accent">Translate</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="translator">Translator</a></li>
+                <li><a href="#" class="nav-link" data-page="dictionary">Dictionary</a></li>
+                <li><a href="#" class="nav-link" data-page="categories">Categories</a></li>
+                <li><a href="#" class="nav-link" data-page="about">About</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== PAGE: HOME ===== -->
+    <div class="page active" id="page-home" data-page="home">
+        <section class="hero" id="home">
+            <div class="hero-bg-effects">
+                <div class="hero-circle hero-circle-1"></div>
+                <div class="hero-circle hero-circle-2"></div>
+                <div class="hero-circle hero-circle-3"></div>
+                <!-- Movable floating elements -->
+                <div class="floating-element draggable" data-speed="0.02" style="top:15%;left:8%">🍃</div>
+                <div class="floating-element draggable" data-speed="0.03" style="top:55%;right:12%">🌿</div>
+                <div class="floating-element draggable" data-speed="0.015" style="bottom:25%;left:25%">🍂</div>
+                <div class="floating-element draggable" data-speed="0.025" style="top:30%;right:30%">🌻</div>
+                <div class="floating-element draggable" data-speed="0.02" style="top:70%;left:60%">🌱</div>
+                <div class="floating-element draggable" data-speed="0.018" style="top:10%;left:45%">🌾</div>
+                <div class="floating-element draggable" data-speed="0.022" style="bottom:10%;right:20%">🪴</div>
+            </div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge animate-on-enter">
+                        <span class="badge-dot"></span>
+                        Powered by IndicTrans2 AI
+                    </div>
+                    <h1 class="hero-title animate-on-enter" style="--delay:0.1s">
+                        Agriculture Topic <br>
+                        <span class="gradient-text typewriter" id="typewriter-text"></span>
+                    </h1>
+                    <p class="hero-description animate-on-enter" style="--delay:0.2s">
+                        Break language barriers in Indian agriculture. Translate farming terminology
+                        across <strong>22+ Indian languages</strong> using AI4Bharat's IndicTrans2 model
+                        with domain-specific accuracy for crops, soil, irrigation & more.
+                    </p>
+                    <div class="hero-actions animate-on-enter" style="--delay:0.3s">
+                        <button class="btn btn-primary btn-glow" id="start-translating-btn" data-page="translator">
+                            <span>Start Translating</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-secondary" id="explore-dict-btn" data-page="dictionary">
+                            <span>Explore Dictionary</span>
+                        </button>
+                    </div>
+                    <div class="hero-stats animate-on-enter" style="--delay:0.4s">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="500">0</span><span class="stat-suffix">+</span>
+                            <span class="stat-label">Agri Terms</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="22">0</span><span class="stat-suffix">+</span>
+                            <span class="stat-label">Languages</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="8">0</span>
+                            <span class="stat-label">Categories</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual animate-on-enter" style="--delay:0.3s">
+                    <div class="hero-image-wrapper">
+                        <img src="assets/hero-new.png" alt="Agriculture Translation System" class="hero-image"
+                            id="hero-img">
+                        <div class="hero-glow"></div>
+                        <!-- Orbiting language badges -->
+                        <div class="orbit-ring">
+                            <div class="orbit-badge" style="--orbit-delay:0s">हिं</div>
+                            <div class="orbit-badge" style="--orbit-delay:-3s">த</div>
+                            <div class="orbit-badge" style="--orbit-delay:-6s">বা</div>
+                            <div class="orbit-badge" style="--orbit-delay:-9s">తె</div>
+                            <div class="orbit-badge" style="--orbit-delay:-12s">मरा</div>
+                            <div class="orbit-badge" style="--orbit-delay:-15s">EN</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator animate-on-enter" style="--delay:0.6s">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span>Scroll to explore</span>
+            </div>
+        </section>
+
+        <!-- Features ribbon -->
+        <section class="features-ribbon" id="features-ribbon">
+            <div class="ribbon-track">
+                <div class="ribbon-content">
+                    <span class="ribbon-item">🤖 IndicTrans2 AI Model</span>
+                    <span class="ribbon-item">🌾 Agriculture Domain</span>
+                    <span class="ribbon-item">🇮🇳 22+ Indian Languages</span>
+                    <span class="ribbon-item">⚡ Real-time Translation</span>
+                    <span class="ribbon-item">📚 500+ Terms</span>
+                    <span class="ribbon-item">🔬 Research-Backed</span>
+                    <span class="ribbon-item">🤖 IndicTrans2 AI Model</span>
+                    <span class="ribbon-item">🌾 Agriculture Domain</span>
+                    <span class="ribbon-item">🇮🇳 22+ Indian Languages</span>
+                    <span class="ribbon-item">⚡ Real-time Translation</span>
+                    <span class="ribbon-item">📚 500+ Terms</span>
+                    <span class="ribbon-item">🔬 Research-Backed</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section class="how-section" id="how-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag animate-on-enter">How it Works</span>
+                    <h2 class="section-title animate-on-enter">Powered by <span class="gradient-text">IndicTrans2</span>
+                    </h2>
+                    <p class="section-subtitle animate-on-enter">AI4Bharat's state-of-the-art multilingual translation
+                        model fine-tuned for agriculture</p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card animate-on-enter" style="--delay:0s">
+                        <div class="step-number">01</div>
+                        <div class="step-icon">📝</div>
+                        <h3>Enter Agriculture Text</h3>
+                        <p>Input farming terminology, crop science descriptions, or agricultural practices in any
+                            supported language</p>
+                    </div>
+                    <div class="step-connector animate-on-enter">
+                        <div class="connector-line"></div>
+                    </div>
+                    <div class="step-card animate-on-enter" style="--delay:0.15s">
+                        <div class="step-number">02</div>
+                        <div class="step-icon">🤖</div>
+                        <h3>AI Processing</h3>
+                        <p>IndicTrans2 model analyzes context, detects agricultural domain, and applies specialized
+                            translation</p>
+                    </div>
+                    <div class="step-connector animate-on-enter">
+                        <div class="connector-line"></div>
+                    </div>
+                    <div class="step-card animate-on-enter" style="--delay:0.3s">
+                        <div class="step-number">03</div>
+                        <div class="step-icon">🌍</div>
+                        <h3>Accurate Translation</h3>
+                        <p>Get domain-specific, contextually accurate translations across 22+ Indian languages instantly
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Language showcase -->
+        <section class="lang-showcase" id="lang-showcase">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag animate-on-enter">Language Support</span>
+                    <h2 class="section-title animate-on-enter">22+ <span class="gradient-text">Indian Languages</span>
+                    </h2>
+                    <p class="section-subtitle animate-on-enter">IndicTrans2 supports all major Indian languages and
+                        English</p>
+                </div>
+                <div class="lang-grid" id="lang-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: TRANSLATOR ===== -->
+    <div class="page" id="page-translator" data-page="translator">
+        <section class="translator-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag animate-on-enter">Core Feature</span>
+                    <h2 class="section-title animate-on-enter">IndicTrans2 Agriculture <span
+                            class="gradient-text">Translator</span></h2>
+                    <p class="section-subtitle animate-on-enter">Translate agriculture topics and terminology with
+                        AI-powered domain-specific accuracy</p>
+                </div>
+
+                <div class="translator-card animate-on-enter">
+                    <div class="translator-controls">
+                        <div class="lang-selector">
+                            <label for="source-lang">From</label>
+                            <select id="source-lang" class="lang-select">
+                                <option value="en">🇬🇧 English</option>
+                                <option value="hi">🇮🇳 Hindi</option>
+                                <option value="bn">🇮🇳 Bengali</option>
+                                <option value="ta">🇮🇳 Tamil</option>
+                                <option value="te">🇮🇳 Telugu</option>
+                                <option value="mr">🇮🇳 Marathi</option>
+                                <option value="gu">🇮🇳 Gujarati</option>
+                                <option value="kn">🇮🇳 Kannada</option>
+                                <option value="ml">🇮🇳 Malayalam</option>
+                                <option value="pa">🇮🇳 Punjabi</option>
+                                <option value="or">🇮🇳 Odia</option>
+                                <option value="as">🇮🇳 Assamese</option>
+                            </select>
+                        </div>
+                        <button class="swap-btn" id="swap-languages-btn" aria-label="Swap languages">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4" />
+                            </svg>
+                        </button>
+                        <div class="lang-selector">
+                            <label for="target-lang">To</label>
+                            <select id="target-lang" class="lang-select">
+                                <option value="hi">🇮🇳 Hindi</option>
+                                <option value="en">🇬🇧 English</option>
+                                <option value="bn">🇮🇳 Bengali</option>
+                                <option value="ta">🇮🇳 Tamil</option>
+                                <option value="te">🇮🇳 Telugu</option>
+                                <option value="mr">🇮🇳 Marathi</option>
+                                <option value="gu">🇮🇳 Gujarati</option>
+                                <option value="kn">🇮🇳 Kannada</option>
+                                <option value="ml">🇮🇳 Malayalam</option>
+                                <option value="pa">🇮🇳 Punjabi</option>
+                                <option value="or">🇮🇳 Odia</option>
+                                <option value="as">🇮🇳 Assamese</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- IndicTrans2 model badge -->
+                    <div class="model-badge">
+                        <div class="model-dot"></div>
+                        <span>IndicTrans2 Model Active</span>
+                        <span class="model-version">v2.0</span>
+                    </div>
+
+                    <div class="translator-body">
+                        <div class="translator-input-area">
+                            <div class="area-header">
+                                <span class="area-label">Source Text</span>
+                                <div class="area-actions">
+                                    <button class="icon-btn" id="mic-btn" title="Voice Input">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                            <line x1="12" y1="19" x2="12" y2="23" />
+                                            <line x1="8" y1="23" x2="16" y2="23" />
+                                        </svg>
+                                    </button>
+                                    <button class="icon-btn" id="clear-input-btn" title="Clear">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M18 6L6 18M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="source-text" class="translator-textarea"
+                                placeholder="Enter agriculture text to translate...&#10;&#10;Examples:&#10;• Crop rotation improves soil fertility&#10;• Drip irrigation conserves water&#10;• Nitrogen fixation by legumes"
+                                rows="6"></textarea>
+                            <div class="char-count"><span id="char-count">0</span> / 2000</div>
+                        </div>
+
+                        <div class="translator-divider">
+                            <button class="translate-btn" id="translate-btn">
+                                <span class="translate-btn-text">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                        <path d="M2 17l10 5 10-5" />
+                                        <path d="M2 12l10 5 10-5" />
+                                    </svg>
+                                    Translate with IndicTrans2
+                                </span>
+                                <span class="translate-btn-loader"></span>
+                            </button>
+                        </div>
+
+                        <div class="translator-output-area">
+                            <div class="area-header">
+                                <span class="area-label">Translation</span>
+                                <div class="area-actions">
+                                    <button class="icon-btn" id="speak-output-btn" title="Listen">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                                        </svg>
+                                    </button>
+                                    <button class="icon-btn" id="copy-output-btn" title="Copy">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="translator-output" id="output-text">
+                                <span class="output-placeholder">Translation will appear here...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="translator-footer">
+                        <div class="domain-tag-group">
+                            <span class="domain-label">Domain Context:</span>
+                            <button class="domain-tag active" data-domain="general">🌍 General</button>
+                            <button class="domain-tag" data-domain="crops">🌾 Crops</button>
+                            <button class="domain-tag" data-domain="soil">🪨 Soil Science</button>
+                            <button class="domain-tag" data-domain="irrigation">💧 Irrigation</button>
+                            <button class="domain-tag" data-domain="livestock">🐄 Livestock</button>
+                            <button class="domain-tag" data-domain="machinery">🚜 Machinery</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Translation confidence meter -->
+                <div class="confidence-panel animate-on-enter" id="confidence-panel" style="display:none">
+                    <h3>Translation Analysis</h3>
+                    <div class="confidence-grid">
+                        <div class="confidence-item">
+                            <span class="conf-label">Confidence</span>
+                            <div class="conf-bar">
+                                <div class="conf-fill" id="conf-accuracy" style="width:0%"></div>
+                            </div>
+                            <span class="conf-value" id="conf-accuracy-val">0%</span>
+                        </div>
+                        <div class="confidence-item">
+                            <span class="conf-label">Domain Match</span>
+                            <div class="conf-bar">
+                                <div class="conf-fill domain" id="conf-domain" style="width:0%"></div>
+                            </div>
+                            <span class="conf-value" id="conf-domain-val">0%</span>
+                        </div>
+                        <div class="confidence-item">
+                            <span class="conf-label">Context Score</span>
+                            <div class="conf-bar">
+                                <div class="conf-fill context" id="conf-context" style="width:0%"></div>
+                            </div>
+                            <span class="conf-value" id="conf-context-val">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Translations -->
+                <div class="recent-section-inner animate-on-enter">
+                    <h3 class="recent-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        Recent Translations
+                    </h3>
+                    <div class="recent-list" id="recent-list">
+                        <div class="empty-state" id="empty-recent">
+                            <span class="empty-icon">📋</span>
+                            <p>No translations yet. Start translating above!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: DICTIONARY ===== -->
+    <div class="page" id="page-dictionary" data-page="dictionary">
+        <section class="dictionary-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag animate-on-enter">Knowledge Base</span>
+                    <h2 class="section-title animate-on-enter">Agriculture <span class="gradient-text">Dictionary</span>
+                    </h2>
+                    <p class="section-subtitle animate-on-enter">Browse our comprehensive agricultural terminology
+                        database with IndicTrans2 translations</p>
+                </div>
+
+                <div class="dictionary-search-bar animate-on-enter">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-4.35-4.35" />
+                        </svg>
+                        <input type="text" id="dict-search" class="search-input"
+                            placeholder="Search agriculture terms... (e.g., photosynthesis, irrigation, crop rotation)">
+                        <div class="search-pulse"></div>
+                    </div>
+                    <div class="search-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="crops">🌾 Crops</button>
+                        <button class="filter-btn" data-filter="soil">🪨 Soil</button>
+                        <button class="filter-btn" data-filter="irrigation">💧 Irrigation</button>
+                        <button class="filter-btn" data-filter="livestock">🐄 Livestock</button>
+                        <button class="filter-btn" data-filter="machinery">🚜 Machinery</button>
+                        <button class="filter-btn" data-filter="pests">🐛 Pests</button>
+                    </div>
+                </div>
+
+                <div class="dictionary-grid" id="dictionary-grid">
+                    <!-- Dictionary cards will be populated by JS -->
+                </div>
+
+                <div class="dictionary-pagination">
+                    <button class="page-btn" id="prev-page-btn" disabled>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                        Previous
+                    </button>
+                    <span class="page-info" id="page-info">Page 1 of 1</span>
+                    <button class="page-btn" id="next-page-btn">
+                        Next
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: CATEGORIES ===== -->
+    <div class="page" id="page-categories" data-page="categories">
+        <section class="categories-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag animate-on-enter">Topics</span>
+                    <h2 class="section-title animate-on-enter">Agriculture <span class="gradient-text">Categories</span>
+                    </h2>
+                    <p class="section-subtitle animate-on-enter">Explore specialized translation domains for various
+                        agricultural fields</p>
+                </div>
+
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Categories populated by JS -->
+                </div>
+
+                <!-- Category detail modal -->
+                <div class="category-detail-panel" id="category-detail" style="display:none">
+                    <div class="detail-header">
+                        <h3 id="detail-title"></h3>
+                        <button class="detail-close" id="detail-close">✕</button>
+                    </div>
+                    <div class="detail-terms" id="detail-terms"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: ABOUT ===== -->
+    <div class="page" id="page-about" data-page="about">
+        <section class="about-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag animate-on-enter">SE CP Project</span>
+                    <h2 class="section-title animate-on-enter">About <span class="gradient-text">AgriTranslate</span>
+                    </h2>
+                    <p class="section-subtitle animate-on-enter">A Software Engineering Capstone Project powered by
+                        IndicTrans2 for bridging agricultural language barriers</p>
+                </div>
+
+                <!-- IndicTrans2 showcase card -->
+                <div class="indictrans-card animate-on-enter">
+                    <div class="indictrans-header">
+                        <div class="indictrans-logo">
+                            <span class="it2-icon">🤖</span>
+                            <div>
+                                <h3>IndicTrans2</h3>
+                                <span class="it2-subtitle">by AI4Bharat</span>
+                            </div>
+                        </div>
+                        <span class="it2-badge">Integrated</span>
+                    </div>
+                    <p class="indictrans-desc">
+                        IndicTrans2 is a state-of-the-art multilingual translation model developed by AI4Bharat that
+                        supports
+                        translation between English and 22 scheduled Indian languages. Our system leverages this model
+                        with
+                        agriculture-domain fine-tuning for superior accuracy in farming terminology.
+                    </p>
+                    <div class="indictrans-features">
+                        <div class="it2-feat">
+                            <span>🎯</span>
+                            <span>High-quality translations for all 22 scheduled Indian languages</span>
+                        </div>
+                        <div class="it2-feat">
+                            <span>🧠</span>
+                            <span>1.1B parameter model with Transformer architecture</span>
+                        </div>
+                        <div class="it2-feat">
+                            <span>🌾</span>
+                            <span>Fine-tuned for agriculture domain terminology</span>
+                        </div>
+                        <div class="it2-feat">
+                            <span>⚡</span>
+                            <span>Real-time inference with optimized pipeline</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-card animate-on-enter" style="--delay:0s">
+                        <div class="about-icon">🎯</div>
+                        <h3>Project Goal</h3>
+                        <p>To create a domain-specific translation system using IndicTrans2 that understands agriculture
+                            terminology and provides contextually accurate translations across all Indian languages.</p>
+                    </div>
+                    <div class="about-card animate-on-enter" style="--delay:0.1s">
+                        <div class="about-icon">⚙️</div>
+                        <h3>System Architecture</h3>
+                        <p>Built with a modular frontend, IndicTrans2 translation engine, domain-specific dictionary,
+                            and smart context detection for accurate agricultural translations.</p>
+                    </div>
+                    <div class="about-card animate-on-enter" style="--delay:0.2s">
+                        <div class="about-icon">🌐</div>
+                        <h3>Multi-Language</h3>
+                        <p>Supporting 22+ Indian languages with specialized farming vocabulary, including regional crop
+                            names, local farming techniques, and indigenous practices.</p>
+                    </div>
+                    <div class="about-card animate-on-enter" style="--delay:0.3s">
+                        <div class="about-icon">📊</div>
+                        <h3>Smart Context</h3>
+                        <p>Uses domain-specific context tags to ensure translations are accurate within the specific
+                            agricultural sub-field being discussed.</p>
+                    </div>
+                    <div class="about-card animate-on-enter" style="--delay:0.4s">
+                        <div class="about-icon">🔬</div>
+                        <h3>Research-Backed</h3>
+                        <p>Terminology database curated from agricultural research papers, FAO documents, and Indian
+                            agricultural university extension services.</p>
+                    </div>
+                    <div class="about-card animate-on-enter" style="--delay:0.5s">
+                        <div class="about-icon">👥</div>
+                        <h3>User-Centric</h3>
+                        <p>Designed for Indian farmers, students, researchers, and agricultural professionals who need
+                            precise cross-language communication.</p>
+                    </div>
+                </div>
+
+                <!-- Tech stack -->
+                <div class="tech-stack animate-on-enter">
+                    <h3 class="tech-title">Technology Stack</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item"><span class="tech-icon">🤖</span><span>IndicTrans2</span></div>
+                        <div class="tech-item"><span class="tech-icon">🐍</span><span>Python</span></div>
+                        <div class="tech-item"><span class="tech-icon">🔥</span><span>PyTorch</span></div>
+                        <div class="tech-item"><span class="tech-icon">🌐</span><span>JavaScript</span></div>
+                        <div class="tech-item"><span class="tech-icon">🎨</span><span>CSS3</span></div>
+                        <div class="tech-item"><span class="tech-icon">📦</span><span>HuggingFace</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <span class="logo-icon">🌾</span>
+                    <span class="logo-text">Agri<span class="logo-accent">Translate</span></span>
+                    <p class="footer-desc">SE CP Topic Translator for Agriculture — Powered by IndicTrans2, bridging
+                        language barriers in Indian farming and agriculture.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Product</h4>
+                        <a href="#" data-page="translator">Translator</a>
+                        <a href="#" data-page="dictionary">Dictionary</a>
+                        <a href="#" data-page="categories">Categories</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <a href="#" data-page="about">About</a>
+                        <a href="https://ai4bharat.iitm.ac.in/indic-trans2" target="_blank">IndicTrans2</a>
+                        <a href="https://huggingface.co/ai4bharat" target="_blank">AI4Bharat</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Project</h4>
+                        <a href="#" id="source-code-link">Source Code</a>
+                        <a href="#" id="team-link">Team</a>
+                        <a href="#" id="license-link">License</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AgriTranslate — SE Capstone Project | Powered by IndicTrans2 by AI4Bharat</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===== PAGE TRANSITION OVERLAY ===== -->
+    <div class="page-transition" id="page-transition">
+        <div class="transition-wave"></div>
+        <div class="transition-icon">🌾</div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

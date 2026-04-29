@@ -1,0 +1,12 @@
+flask==3.1.0
+flask-cors==5.0.1
+torch>=2.0.0
+transformers>=4.33.2
+sentencepiece
+nltk
+sacremoses
+regex
+mosestokenizer
+scipy
+accelerate
+IndicTransToolkit
