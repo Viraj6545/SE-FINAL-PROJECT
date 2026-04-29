@@ -14,6 +14,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const itemsPerPage = 6;
     let recentTranslations = JSON.parse(localStorage.getItem("agri-recent") || "[]");
 
+    // ---- CLERK AUTH INITIALIZATION ----
+    const clerkPubKey = "pk_test_Y2xlcmsuYWdyaS50cmFuc2xhdGUubmV0JA";
+    
+    async function initAuth() {
+        if (!window.Clerk) {
+            console.error("Clerk SDK not loaded");
+            return;
+        }
+
+        try {
+            await window.Clerk.load();
+            
+            const signInBtn = document.getElementById("sign-in-btn");
+            const userButtonDiv = document.getElementById("user-button");
+
+            if (window.Clerk.user) {
+                // User is signed in
+                signInBtn.style.display = "none";
+                window.Clerk.mountUserButton(userButtonDiv);
+                userButtonDiv.style.display = "block";
+            } else {
+                // User is not signed in
+                userButtonDiv.style.display = "none";
+                signInBtn.style.display = "block";
+                signInBtn.addEventListener("click", () => {
+                    window.Clerk.openSignIn();
+                });
+            }
+        } catch (err) {
+            console.error("Error initializing Clerk:", err);
+        }
+    }
+
+    initAuth();
+
     // ---- INDICTRANS2 LANGUAGES ----
     const INDIC_LANGUAGES = [
         { code: "en", name: "English", script: "English", flag: "🇬🇧" },

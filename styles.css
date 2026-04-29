@@ -328,6 +328,34 @@ img {
     background: transparent;
 }
 
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-left: auto;
+    margin-right: var(--space-md);
+}
+
+.auth-btn {
+    padding: var(--space-xs) var(--space-md);
+    background: var(--grad-primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+#user-button {
+    display: none;
+}
+
 .navbar.scrolled {
     background: rgba(10, 15, 13, 0.9);
     backdrop-filter: blur(20px);
