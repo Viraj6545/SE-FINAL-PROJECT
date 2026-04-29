@@ -336,6 +336,33 @@ img {
     margin-right: var(--space-md);
 }
 
+.nav-ui-lang {
+    margin-left: var(--space-xl);
+}
+
+.ui-lang-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--clr-border);
+    color: var(--clr-text);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    transition: var(--transition);
+}
+
+.ui-lang-select:hover {
+    border-color: var(--clr-primary);
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.ui-lang-select option {
+    background: var(--clr-bg-2);
+    color: var(--clr-text);
+}
+
 .auth-btn {
     padding: var(--space-xs) var(--space-md);
     background: var(--grad-primary);

@@ -49,6 +49,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initAuth();
 
+    // ---- WEBSITE LANGUAGE SWITCHER ----
+    let currentUILang = localStorage.getItem("agri-ui-lang") || "en";
+    const uiLangSelect = document.getElementById("ui-lang-select");
+    if (uiLangSelect) {
+        uiLangSelect.value = currentUILang;
+        uiLangSelect.addEventListener("change", (e) => {
+            currentUILang = e.target.value;
+            localStorage.setItem("agri-ui-lang", currentUILang);
+            updateUILanguage();
+        });
+    }
+
+    function updateUILanguage() {
+        const t = UI_TRANSLATIONS[currentUILang];
+        if (!t) return;
+
+        // Navbar
+        const links = {
+            "home": t.nav_home,
+            "translator": t.nav_translator,
+            "dictionary": t.nav_dictionary,
+            "categories": t.nav_categories,
+            "about": t.nav_about
+        };
+        document.querySelectorAll(".nav-link").forEach(link => {
+            const page = link.dataset.page;
+            if (links[page]) link.textContent = links[page];
+        });
+
+        // Hero
+        const heroTitle = document.querySelector(".hero-title");
+        const heroSubtitle = document.querySelector(".hero-subtitle");
+        const startBtn = document.querySelector(".hero-actions .btn-primary span");
+        const exploreBtn = document.querySelector(".hero-actions .btn-secondary span");
+        if (heroTitle) heroTitle.innerHTML = t.hero_title;
+        if (heroSubtitle) heroSubtitle.textContent = t.hero_subtitle;
+        if (startBtn) startBtn.textContent = t.hero_btn_start;
+        if (exploreBtn) exploreBtn.textContent = t.hero_btn_explore;
+
+        // Translator Section
+        const transTitle = document.querySelector("#translator .section-title");
+        const transSubtitle = document.querySelector("#translator .section-subtitle");
+        const fromLabel = document.querySelector("label[for='source-lang']");
+        const toLabel = document.querySelector("label[for='target-lang']");
+        const translateBtnText = document.querySelector("#translate-btn span");
+        const sourceTextarea = document.getElementById("source-text");
+        const targetTextarea = document.getElementById("target-text");
+
+        if (transTitle) transTitle.innerHTML = t.translator_title;
+        if (transSubtitle) transSubtitle.textContent = t.translator_subtitle;
+        if (fromLabel) fromLabel.textContent = t.label_from;
+        if (toLabel) toLabel.textContent = t.label_to;
+        if (translateBtnText) translateBtnText.textContent = t.btn_translate;
+        if (sourceTextarea) sourceTextarea.placeholder = t.placeholder_source;
+        if (targetTextarea) targetTextarea.placeholder = t.placeholder_target;
+
+        // Dictionary Section
+        const dictTitle = document.querySelector("#dictionary .section-title");
+        const dictSubtitle = document.querySelector("#dictionary .section-subtitle");
+        const dictSearch = document.getElementById("dict-search");
+        if (dictTitle) dictTitle.innerHTML = t.dict_title;
+        if (dictSubtitle) dictSubtitle.textContent = t.dict_subtitle;
+        if (dictSearch) dictSearch.placeholder = t.dict_search_placeholder;
+
+        // Footer
+        const copyright = document.querySelector(".footer-bottom p");
+        if (copyright) copyright.textContent = t.footer_copyright;
+    }
+
+    // Initial UI language update
+    updateUILanguage();
+
     // ---- INDICTRANS2 LANGUAGES ----
     const INDIC_LANGUAGES = [
         { code: "en", name: "English", script: "English", flag: "🇬🇧" },

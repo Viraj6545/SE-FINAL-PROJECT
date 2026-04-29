@@ -202,3 +202,73 @@ const LANGUAGES = {
     as: { name: "Assamese", flag: "🇮🇳" },
     ur: { name: "Urdu", flag: "🇵🇰" }
 };
+
+// UI Translations for the entire website
+const UI_TRANSLATIONS = {
+    en: {
+        nav_home: "Home",
+        nav_translator: "Translator",
+        nav_dictionary: "Dictionary",
+        nav_categories: "Categories",
+        nav_about: "About",
+        hero_title: "IndicTrans2 Agriculture <span class='logo-accent'>Translator</span>",
+        hero_subtitle: "Translate agriculture topics and terminology with AI-powered domain-specific accuracy across 22+ Indian languages.",
+        hero_btn_start: "Get Started",
+        hero_btn_explore: "Explore Dictionary",
+        translator_title: "IndicTrans2 Agriculture <span class='logo-accent'>Translator</span>",
+        translator_subtitle: "Translate agriculture topics and terminology with AI-powered domain-specific accuracy",
+        label_from: "FROM",
+        label_to: "TO",
+        btn_translate: "Translate with IndicTrans2",
+        placeholder_source: "Enter agriculture text to translate...",
+        placeholder_target: "Translation will appear here...",
+        dict_title: "Agriculture <span class='logo-accent'>Dictionary</span>",
+        dict_subtitle: "Browse our comprehensive agricultural terminology database with IndicTrans2 translations",
+        dict_search_placeholder: "Search agriculture terms... (e.g., photosynthesis, irrigation)",
+        footer_copyright: "© 2026 AgriTranslate. Built with IndicTrans2."
+    },
+    hi: {
+        nav_home: "होम",
+        nav_translator: "अनुवादक",
+        nav_dictionary: "शब्दकोश",
+        nav_categories: "श्रेणियां",
+        nav_about: "हमारे बारे में",
+        hero_title: "IndicTrans2 कृषि <span class='logo-accent'>अनुवादक</span>",
+        hero_subtitle: "22+ भारतीय भाषाओं में एआई-संचालित डोमेन-विशिष्ट सटीकता के साथ कृषि विषयों और शब्दावली का अनुवाद करें।",
+        hero_btn_start: "शुरू करें",
+        hero_btn_explore: "शब्दकोश देखें",
+        translator_title: "IndicTrans2 कृषि <span class='logo-accent'>अनुवादक</span>",
+        translator_subtitle: "एआई-संचालित डोमेन-विशिष्ट सटीकता के साथ कृषि विषयों और शब्दावली का अनुवाद करें",
+        label_from: "से",
+        label_to: "तक",
+        btn_translate: "IndicTrans2 के साथ अनुवाद करें",
+        placeholder_source: "अनुवाद करने के लिए कृषि पाठ दर्ज करें...",
+        placeholder_target: "अनुवाद यहाँ दिखाई देगा...",
+        dict_title: "कृषि <span class='logo-accent'>शब्दकोश</span>",
+        dict_subtitle: "IndicTrans2 अनुवादों के साथ हमारे व्यापक कृषि शब्दावली डेटाबेस को ब्राउज़ करें",
+        dict_search_placeholder: "कृषि शब्द खोजें... (जैसे, प्रकाश संश्लेषण, सिंचाई)",
+        footer_copyright: "© 2026 AgriTranslate. IndicTrans2 के साथ निर्मित।"
+    },
+    te: {
+        nav_home: "హోమ్",
+        nav_translator: "అనువాదకుడు",
+        nav_dictionary: "నిఘంటువు",
+        nav_categories: "వర్గాలు",
+        nav_about: "మా గురించి",
+        hero_title: "IndicTrans2 వ్యవసాయ <span class='logo-accent'>అనువాదకుడు</span>",
+        hero_subtitle: "22+ భారతీయ భాషలలో AI- ఆధారిత డొమైన్-నిర్దిష్ట ఖచ్చితత్వంతో వ్యవసాయ విషయాలు మరియు పరిభాషను అనువదించండి.",
+        hero_btn_start: "ప్రారంభించండి",
+        hero_btn_explore: "నిఘంటువును అన్వేషించండి",
+        translator_title: "IndicTrans2 వ్యవసాయ <span class='logo-accent'>అనువాదకుడు</span>",
+        translator_subtitle: "AI- ఆధారిత డొమైన్-నిర్దిష్ట ఖచ్చితత్వంతో వ్యవసాయ విషయాలు మరియు పరిభాషను అనువదించండి",
+        label_from: "నుండి",
+        label_to: "కు",
+        btn_translate: "IndicTrans2 తో అనువదించండి",
+        placeholder_source: "అనువదించడానికి వ్యవసాయ వచనాన్ని నమోదు చేయండి...",
+        placeholder_target: "అనువాదం ఇక్కడ కనిపిస్తుంది...",
+        dict_title: "వ్యవసాయ <span class='logo-accent'>నిఘంటువు</span>",
+        dict_subtitle: "IndicTrans2 అనువాదాలతో మా సమగ్ర వ్యవసాయ పరిభాష డేటాబేస్‌ను బ్రౌజ్ చేయండి",
+        dict_search_placeholder: "వ్యవసాయ పదాల కోసం వెతకండి... (ఉదా., కిరణజన్య సంయోగక్రియ, నీటి పారుదల)",
+        footer_copyright: "© 2026 AgriTranslate. IndicTrans2 తో నిర్మించబడింది."
+    }
+};
